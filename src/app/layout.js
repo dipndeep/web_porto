@@ -20,7 +20,7 @@ export const metadata = {
     "Python",
     "Data Mining",
   ],
-  authors: [{ name: "Your Name" }],
+  authors: [{ name: "Ganendra" }],
   openGraph: {
     title: "Portfolio | Data Enthusiast & ML Explorer",
     description:

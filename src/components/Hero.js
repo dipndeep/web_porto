@@ -50,7 +50,7 @@ export default function Hero() {
         </div>
 
         <h1 className={styles.name}>
-          Hi, I&apos;m <span className={styles.nameAccent}>Your Name</span>
+          Hi, I&apos;m <span className={styles.nameAccent}>Ganendra Pradipa</span>
         </h1>
 
         <div className={styles.titleWrapper}>
