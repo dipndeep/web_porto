@@ -7,62 +7,68 @@ const skills = [
   {
     name: 'Data Analysis',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="18" y1="20" x2="18" y2="10" />
-        <line x1="12" y1="20" x2="12" y2="4" />
-        <line x1="6" y1="20" x2="6" y2="14" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="20" x2="12" y2="10" />
+        <line x1="18" y1="20" x2="18" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="16" />
+        <line x1="3" y1="22" x2="21" y2="22" />
       </svg>
     ),
   },
   {
     name: 'Machine Learning',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.57-3.25 3.93L12 10v2" />
-        <circle cx="12" cy="16" r="4" />
-        <path d="M8 16H4" />
-        <path d="M20 16h-4" />
-        <path d="M12 20v2" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+        <rect x="9" y="9" width="6" height="6" />
+        <line x1="9" y1="1" x2="9" y2="4" />
+        <line x1="15" y1="1" x2="15" y2="4" />
+        <line x1="9" y1="20" x2="9" y2="23" />
+        <line x1="15" y1="20" x2="15" y2="23" />
+        <line x1="20" y1="9" x2="23" y2="9" />
+        <line x1="20" y1="14" x2="23" y2="14" />
+        <line x1="1" y1="9" x2="4" y2="9" />
+        <line x1="1" y1="14" x2="4" y2="14" />
       </svg>
     ),
   },
   {
     name: 'Data Mining',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <ellipse cx="12" cy="5" rx="9" ry="3" />
         <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
         <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+        <path d="M21 8.5c0 1.66-4 3-9 3s-9-1.34-9-3" />
       </svg>
     ),
   },
   {
     name: 'Python',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2c-1.7 0-3 .5-3.8 1.2-.7.7-1.2 1.7-1.2 3.3V9h5v1H6.5c-1.8 0-3.5 1.4-3.5 4s1.2 4 3.5 4H9v-3.5c0-1.8 1.4-3.5 3.5-3.5h5c1.5 0 2.5-1.2 2.5-2.5V6.5C20 4 18 2 12 2zm-1.5 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-        <path d="M12 22c1.7 0 3-.5 3.8-1.2.7-.7 1.2-1.7 1.2-3.3V15h-5v-1h5.5c1.8 0 3.5-1.4 3.5-4s-1.2-4-3.5-4H15v3.5c0 1.8-1.4 3.5-3.5 3.5h-5C5 13 4 14.2 4 15.5v2C4 20 6 22 12 22zm1.5-2.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+      <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24">
+        <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h4.3v-3.1h-3.1l-.19-.01-.26-.04-.33-.08-.4-.14-.46-.22-.52-.31-.56-.41-.58-.52-.59-.64-.58-.78-.54-.93-.47-1.1-.38-1.27-.26-1.46-.1-1.64.08-1.84.3-2.03.54-2.2.82-2.33 1.12-2.4 1.46-2.42 1.83-2.36 2.22-2.22 2.62-2.03 3.03-1.78 3.44-1.46 3.84-1.08L14.25.18zm-2.08 1.48l-.05.15-.02.2-.01.21.01.2.03.18.06.15.08.1-.1.06-.12.02h.1l.1-.03.1-.05.08-.09.06-.11.04-.15.02-.18-.01-.21-.03-.18-.05-.14-.08-.1-.1-.06-.11-.03-.11.01-.1.04-.08.08-.06.12zM9.75 23.82l-.9-.2-.73-.26-.59-.3-.45-.32-.34-.34-.25-.34-.16-.33-.1-.3-.04-.26-.02-.2.01-.13V15.5l.05-.63.13-.55.21-.46.26-.38.3-.31.33-.25.35-.19.35-.14.33-.1.3-.07.26-.04.21-.02h5.23l.69-.05.59-.14.5-.22.41-.27.33-.32.27-.35.2-.36.15-.37.1-.35.07-.32.04-.27.02-.21v-3.06h5.06l.21.03.28.07.32.12.35.18.36.26.36.36.35.46.32.59.28.73.21.88.14 1.05.05 1.23-.06 1.22-.16 1.04-.24.87-.32.71-.36.57-.4.44-.42.33-.42.24-.4.16-.36.1-.32.05-.24.01h-.16l-.06-.01h-4.3v3.1h3.1l.19.01.26.04.33.08.4.14.46.22.52.31.56.41.58.52.59.64.58.78.54.93.47 1.1.38 1.27.26 1.46.1 1.64-.08 1.84-.3 2.03-.54 2.2-.82 2.33-1.12 2.4-1.46 2.42-1.83 2.36-2.22 2.22-2.62 2.03-3.03 1.78-3.44 1.46-3.84 1.08-4.22.64zM11.83 22.34l.05-.15.02-.2.01-.21-.01-.2-.03-.18-.06-.15-.08-.1-.1-.06-.12-.02h-.1l-.1.03-.1.05-.08.09-.06.11-.04.15-.02.18.01.21.03.18.05.14.08.1.1.06.11.03.11-.01.1-.04.08-.08.06-.12z"/>
       </svg>
     ),
   },
   {
     name: 'SQL',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <ellipse cx="12" cy="5" rx="9" ry="3" />
-        <path d="M3 5v6c0 1.66 4 3 9 3" />
-        <path d="M21 5v6c0 1.66-4 3-9 3" />
-        <path d="M3 11v6c0 1.66 4 3 9 3" />
-        <path d="M21 11v6c0 1.66-4 3-9 3" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+        <line x1="3" y1="9" x2="21" y2="9" />
+        <line x1="3" y1="15" x2="21" y2="15" />
+        <line x1="9" y1="9" x2="9" y2="21" />
+        <line x1="15" y1="9" x2="15" y2="21" />
       </svg>
     ),
   },
   {
     name: 'Visualization',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
-        <path d="M22 12A10 10 0 0 0 12 2v10z" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 3v18h18" />
+        <path d="m19 9-5 5-4-4-3 3" />
       </svg>
     ),
   },
