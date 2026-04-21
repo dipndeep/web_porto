@@ -41,9 +41,7 @@ export default function Footer() {
         <div className={styles.top}>
           <div>
             <a href="#hero" className={styles.logo}>
-              <span className={styles.logoAccent}>&lt;</span>
-              Porto
-              <span className={styles.logoAccent}>/&gt;</span>
+              GanendraSpaceship
             </a>
             <p className={styles.tagline}>
               Turning data into insights, one project at a time.

@@ -40,9 +40,7 @@ export default function Navbar() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`} id="navbar">
       <nav className={styles.nav}>
         <a href="#hero" className={styles.logo} onClick={handleLinkClick}>
-          <span className={styles.logoAccent}>&lt;</span>
-          Porto
-          <span className={styles.logoAccent}>/&gt;</span>
+          GanendraSpaceship
         </a>
 
         {/* Desktop Nav */}

@@ -119,7 +119,7 @@ export default function Contact() {
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={200} className={styles.info}>
-            <div className={styles.infoCard}>
+            <a href="https://mail.google.com/mail/?view=cm&to=ganendraptpratama@gmail.com" target="_blank" rel="noopener noreferrer" className={styles.infoCard} id="contact-email-link">
               <div className={styles.infoIcon}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -128,11 +128,11 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className={styles.infoLabel}>Email</h4>
-                <p className={styles.infoValue}>hello@example.com</p>
+                <p className={styles.infoValue}>ganendraptpratama@gmail.com</p>
               </div>
-            </div>
+            </a>
 
-            <div className={styles.infoCard}>
+            <a href="https://www.google.com/maps/place/Merauke,+South+Papua" target="_blank" rel="noopener noreferrer" className={styles.infoCard} id="contact-location-link">
               <div className={styles.infoIcon}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
@@ -141,9 +141,9 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className={styles.infoLabel}>Location</h4>
-                <p className={styles.infoValue}>Indonesia</p>
+                <p className={styles.infoValue}>Merauke, South Papua</p>
               </div>
-            </div>
+            </a>
 
             <div className={styles.infoCard}>
               <div className={styles.infoIcon}>
