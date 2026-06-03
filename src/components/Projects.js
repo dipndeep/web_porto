@@ -22,12 +22,12 @@ const projects = [
     github: 'https://github.com/dipndeep/titiphub_app',
   },
   {
-    title: 'Data Mining & Analysis',
+    title: 'MaezproGym Membership App',
     description:
-      'Web scraping and data mining project that collects, cleans, and analyzes large datasets to uncover hidden patterns and associations.',
-    image: '/project-data-mining.png',
-    tags: ['BeautifulSoup', 'SQL', 'Python', 'Matplotlib'],
-    github: 'https://github.com',
+      'A web application that helps people to find reliable babysitters and pet sitters. It also provides a platform for people to find reliable babysitters and pet sitters.',
+    image: '/maespro-apps.png',
+    tags: ['React.JS', 'Tailwind CSS', 'Node.JS', 'Fitness Center'],
+    github: 'https://github.com/dipndeep/maezprogym-apps',
   },
 ];
 
