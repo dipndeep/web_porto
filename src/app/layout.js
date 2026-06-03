@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Portfolio | Data Enthusiast & ML Explorer",
+  title: "Ganendra | Portfolio",
   description:
     "Personal portfolio of a data-focused professional specializing in Data Analysis, Machine Learning, Data Mining, and Data Science. Transforming raw data into actionable insights.",
   keywords: [
