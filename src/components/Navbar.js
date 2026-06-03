@@ -40,7 +40,7 @@ export default function Navbar() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`} id="navbar">
       <nav className={styles.nav}>
         <a href="#hero" className={styles.logo} onClick={handleLinkClick}>
-          Ganendra.AI
+          GanendraSpaceship
         </a>
 
         {/* Desktop Nav */}

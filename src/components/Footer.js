@@ -41,7 +41,7 @@ export default function Footer() {
         <div className={styles.top}>
           <div>
             <a href="#hero" className={styles.logo}>
-              Ganendra.AI
+              GanendraSpaceship
             </a>
             <p className={styles.tagline}>
               Turning data into insights, one project at a time.
