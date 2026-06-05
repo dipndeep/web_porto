@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+import Image from 'next/image';
 import { 
   SiPytorch, 
   SiJupyter, 
@@ -11,9 +13,10 @@ import {
   SiKaggle, 
   SiPython, 
   SiLaravel, 
-  SiReact 
+  SiReact
 } from 'react-icons/si';
-import { TbBrandVscode } from 'react-icons/tb';
+import { VscVscode } from 'react-icons/vsc';
+
 import { DiPhotoshop } from 'react-icons/di';
 import { Palette, FileText, Camera, Mic } from 'lucide-react';
 
@@ -71,7 +74,7 @@ const skills = [
 const tools = [
   {
     name: 'VS Code',
-    icon: TbBrandVscode,
+    icon: VscVscode,
     color: '#007ACC', // VS Code Blue
   },
   {
@@ -112,6 +115,8 @@ const tools = [
 ];
 
 export default function About() {
+  const [activePhoto, setActivePhoto] = useState(1);
+
   return (
     <section className={styles.about} id="about">
       <div className="section">
@@ -124,6 +129,81 @@ export default function About() {
             and turning complex datasets into clear, impactful solutions.
           </p>
         </AnimateOnScroll>
+
+        {/* Track Record Section */}
+        <div className={styles.trackRecord}>
+          <AnimateOnScroll animation="fade-left" delay={150} className={styles.imageWrapper}>
+            <div className={styles.photoStack}>
+              {/* Photo 1: porto.jpeg */}
+              <div 
+                className={`${styles.photoContainer} ${activePhoto === 1 ? styles.activeCard : styles.inactiveCard}`}
+                onClick={() => setActivePhoto(1)}
+              >
+                <div className={styles.photoGlow} />
+                <Image
+                  src="/porto.jpeg"
+                  alt="Ganendra Pradipa - Portrait 1"
+                  width={380}
+                  height={480}
+                  className={styles.photo}
+                  priority
+                />
+              </div>
+
+              {/* Photo 2: porto2.jpg */}
+              <div 
+                className={`${styles.photoContainer} ${activePhoto === 2 ? styles.activeCard : styles.inactiveCard} ${styles.secondPhoto}`}
+                onClick={() => setActivePhoto(2)}
+              >
+                <div className={styles.photoGlow} />
+                <Image
+                  src="/porto2.jpg"
+                  alt="Ganendra Pradipa - Portrait 2"
+                  width={380}
+                  height={480}
+                  className={styles.photo}
+                  priority
+                />
+              </div>
+            </div>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll animation="fade-right" delay={200} className={styles.recordContent}>
+            <h3 className={styles.recordTitle}>Professional Track Record</h3>
+            <p className={styles.recordIntro}>
+              My experience spans multiple domains in tech, combining data intelligence 
+              with practical development to build impact-driven solutions.
+            </p>
+            
+            <div className={styles.timeline}>
+              <div className={styles.timelineItem}>
+                <span className={styles.timelineYear}>2022 - Present</span>
+                <h4 className={styles.timelineRole}>Information System Student @Universitas Musamus</h4>
+                <p className={styles.timelineDesc}>
+                  Studying Information Systems, where I hone my analytical and technical skills,
+                  especially in data science, web development and machine learning.
+                </p>
+              </div>
+
+              <div className={styles.timelineItem}>
+                <span className={styles.timelineYear}>Jun 2025 - Present</span>
+                <h4 className={styles.timelineRole}>Research & Development @SMART CENTER UNIVERSITAS MUSAMUS</h4>
+                <p className={styles.timelineDesc}>
+                  Working on developing AI applications to solve problems in the Marind sub-district,
+                  to help local communities in various fields.
+                </p>
+              </div>
+
+              <div className={styles.timelineItem}>
+                <span className={styles.timelineYear}>Jun 2025 - Dec 2025</span>
+                <h4 className={styles.timelineRole}>Research Assistant - Computer Vision and Artificial Intelligence @Information System Department of Universitas Musamus</h4>
+                <p className={styles.timelineDesc}>
+                  Successfully contributed to the development and evaluation of AI-based object detection models for aquatic weed detection using drone imagery, achieving mAP@50 scores of up to 44.7% on primary drone datasets and above 95% on secondary datasets during model experimentation and validation.
+                </p>
+              </div>
+            </div>
+          </AnimateOnScroll>
+        </div>
 
         <div className={styles.grid}>
           {/* Left Column: Skills */}
