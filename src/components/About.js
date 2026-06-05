@@ -122,7 +122,7 @@ export default function About() {
       <div className="section">
         <AnimateOnScroll>
           <span className="section-label">About Me</span>
-          <h2 className="section-title">Passionate about data.</h2>
+          <h2 className="section-title">Passionate Data Tech.</h2>
           <p className="section-subtitle">
             A data-focused professional with a strong foundation in analysis,
             machine learning, and data mining. I thrive on uncovering patterns
