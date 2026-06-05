@@ -1,19 +1,27 @@
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
   z-index: 1000;
-  padding: 1rem 2rem;
+  padding: 0.75rem 2rem;
+  background: rgba(10, 10, 15, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
 }
 
 .scrolled {
+  top: 1rem;
   background: var(--bg-navbar);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.75rem 2rem;
+  border-color: var(--border-color-hover);
+  box-shadow: var(--shadow-md), 0 0 25px rgba(124, 115, 255, 0.05);
+  padding: 0.6rem 2rem;
 }
 
 .nav {
@@ -21,10 +29,14 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
+  width: 100%;
 }
 
 .logo {
+  position: absolute;
+  left: 0;
   font-size: var(--font-size-xl);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -75,6 +87,8 @@
 }
 
 .actions {
+  position: absolute;
+  right: 0;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -178,11 +192,14 @@
 /* Responsive */
 @media (max-width: 768px) {
   .header {
-    padding: 0.75rem 1.25rem;
+    top: 1rem;
+    width: 92%;
+    padding: 0.5rem 1.25rem;
   }
 
   .scrolled {
-    padding: 0.5rem 1.25rem;
+    top: 0.75rem;
+    padding: 0.4rem 1.25rem;
   }
 
   .links {

@@ -1,6 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
+import CustomCursor from "@/components/CustomCursor";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,7 +37,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="dark" className={inter.variable}>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <CustomCursor />
+          <ScrollProgress />
+          {children}
+          <BackToTop />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,0 +1,48 @@
+.cursorDot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  margin-top: -4px;
+  margin-left: -4px;
+  transition: width var(--transition-fast), height var(--transition-fast), margin-top var(--transition-fast), margin-left var(--transition-fast), background-color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.cursorRing {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  margin-top: -18px;
+  margin-left: -18px;
+  transition: width var(--transition-fast), height var(--transition-fast), margin-top var(--transition-fast), margin-left var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), opacity var(--transition-fast);
+}
+
+/* Hovered state on interactive items */
+.cursorDot.hovered {
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  margin-left: -2px;
+  background-color: var(--accent-hover);
+}
+
+.cursorRing.hovered {
+  width: 52px;
+  height: 52px;
+  margin-top: -26px;
+  margin-left: -26px;
+  border-color: var(--accent-hover);
+  background-color: var(--accent-subtle);
+  border-width: 1px;
+}
