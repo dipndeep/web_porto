@@ -121,7 +121,35 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  transition: all var(--transition-base);
+}
+
+.socialLink:hover {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(124, 115, 255, 0.15);
 }
 
 .stats {
