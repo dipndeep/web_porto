@@ -16,7 +16,7 @@ const projects = [
   {
     title: 'TitipHub Startup',
     description:
-      'A startup idea that I developed in college, TitipHub is a web application that helps people to find reliable babysitters and pet sitters. It also provides a platform for people to find reliable babysitters and pet sitters.',
+      'A college-developed startup platform connecting parents and pet owners with trusted, local babysitters and pet sitters.',
     image: '/titiphub.png',
     tags: ['Start Up', 'React.JS', 'Tailwind CSS', 'Node.JS'],
     github: 'https://github.com/dipndeep/titiphub_app',
@@ -24,7 +24,7 @@ const projects = [
   {
     title: 'MaezproGym Membership App',
     description:
-      'A web application that helps people to find reliable babysitters and pet sitters. It also provides a platform for people to find reliable babysitters and pet sitters.',
+      'A web application designed for fitness centers to manage gym memberships, track customer visits, and handle subscription package registration.',
     image: '/maespro-apps.png',
     tags: ['React.JS', 'Tailwind CSS', 'Node.JS', 'Fitness Center'],
     github: 'https://github.com/dipndeep/maezprogym-apps',

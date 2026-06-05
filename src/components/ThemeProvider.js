@@ -16,10 +16,14 @@ export default function ThemeProvider({ children }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
-    setTheme(savedTheme);
     document.documentElement.setAttribute('data-theme', savedTheme);
+
+    const timeout = setTimeout(() => {
+      setMounted(true);
+      setTheme(savedTheme);
+    }, 0);
+    return () => clearTimeout(timeout);
   }, []);
 
   const toggleTheme = () => {

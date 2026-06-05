@@ -1,9 +1,9 @@
 import styles from './Footer.module.css';
 
 const socials = [
-  { name: 'GitHub', url: 'https://github.com', icon: 'GH' },
-  { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'LI' },
-  { name: 'Instagram', url: 'https://instagram.com', icon: 'IG' },
+  { name: 'GitHub', url: 'https://github.com/dipndeep', icon: 'GH' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/ganendrapratama/', icon: 'LI' },
+  { name: 'Instagram', url: 'https://www.instagram.com/dipaganendra/', icon: 'IG' },
 ];
 
 function GithubIcon() {
@@ -61,7 +61,7 @@ export default function Footer() {
         </div>
         <div className={styles.divider} />
         <div className={styles.bottom}>
-          <p className={styles.copyright}>&copy; {currentYear} Portfolio. All rights reserved.</p>
+          <p className={styles.copyright}>&copy; {currentYear} Ganendra. All rights reserved.</p>
           <p className={styles.credit}>Designed &amp; built with passion.</p>
         </div>
       </div>

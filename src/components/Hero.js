@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './Hero.module.css';
+import ParticlesBackground from './ParticlesBackground';
 
 const titles = [
   'Data Enthusiast',
@@ -30,8 +31,10 @@ export default function Hero() {
         setDisplayed(current.slice(0, displayed.length - 1));
       }, 40);
     } else if (isDeleting && displayed.length === 0) {
-      setIsDeleting(false);
-      setTitleIndex((prev) => (prev + 1) % titles.length);
+      timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setTitleIndex((prev) => (prev + 1) % titles.length);
+      }, 100);
     }
 
     return () => clearTimeout(timeout);
@@ -42,6 +45,7 @@ export default function Hero() {
       {/* Ambient background */}
       <div className={styles.bgGlow} />
       <div className={styles.bgGrid} />
+      <ParticlesBackground />
 
       <div className={styles.content}>
         <div className={styles.badge}>
