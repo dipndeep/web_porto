@@ -4,6 +4,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="dark" className={inter.variable}>
       <body>
         <ThemeProvider>
+          <LoadingScreen />
           <CustomCursor />
           <ScrollProgress />
           {children}
