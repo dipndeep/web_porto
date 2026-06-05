@@ -6,7 +6,8 @@ export default function AnimateOnScroll({
   children,
   className = '',
   delay = 0,
-  threshold = 0.15,
+  threshold = 0.1,
+  animation = 'fade-up',
 }) {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -35,7 +36,7 @@ export default function AnimateOnScroll({
   return (
     <div
       ref={ref}
-      className={`animate-in ${isVisible ? 'visible' : ''} ${className}`}
+      className={`animate-in ${animation} ${isVisible ? 'visible' : ''} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

@@ -46,9 +46,7 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: var(--accent-subtle);
   border-radius: 8px;
-  color: var(--accent);
   flex-shrink: 0;
   transition: all var(--transition-base);
 }
@@ -61,8 +59,8 @@
 
 .skillCard:hover .skillIcon,
 .toolCard:hover .toolIcon {
-  background: var(--accent);
-  color: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 0 12px currentColor;
 }
 
 .skillName,

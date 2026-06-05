@@ -118,46 +118,52 @@ export default function Contact() {
             </form>
           </AnimateOnScroll>
 
-          <AnimateOnScroll delay={200} className={styles.info}>
-            <a href="https://mail.google.com/mail/?view=cm&to=ganendraptpratama@gmail.com" target="_blank" rel="noopener noreferrer" className={styles.infoCard} id="contact-email-link">
-              <div className={styles.infoIcon}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-              </div>
-              <div>
-                <h4 className={styles.infoLabel}>Email</h4>
-                <p className={styles.infoValue}>ganendraptpratama@gmail.com</p>
-              </div>
-            </a>
+          <div className={styles.info}>
+            <AnimateOnScroll delay={150} animation="zoom-in">
+              <a href="https://mail.google.com/mail/?view=cm&to=ganendraptpratama@gmail.com" target="_blank" rel="noopener noreferrer" className={styles.infoCard} id="contact-email-link">
+                <div className={styles.infoIcon}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className={styles.infoLabel}>Email</h4>
+                  <p className={styles.infoValue}>ganendraptpratama@gmail.com</p>
+                </div>
+              </a>
+            </AnimateOnScroll>
 
-            <a href="https://www.google.com/maps/place/Merauke,+South+Papua" target="_blank" rel="noopener noreferrer" className={styles.infoCard} id="contact-location-link">
-              <div className={styles.infoIcon}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-              <div>
-                <h4 className={styles.infoLabel}>Location</h4>
-                <p className={styles.infoValue}>Merauke, South Papua</p>
-              </div>
-            </a>
+            <AnimateOnScroll delay={200} animation="zoom-in">
+              <a href="https://www.google.com/maps/place/Merauke,+South+Papua" target="_blank" rel="noopener noreferrer" className={styles.infoCard} id="contact-location-link">
+                <div className={styles.infoIcon}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className={styles.infoLabel}>Location</h4>
+                  <p className={styles.infoValue}>Merauke, South Papua</p>
+                </div>
+              </a>
+            </AnimateOnScroll>
 
-            <div className={styles.infoCard}>
-              <div className={styles.infoIcon}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
+            <AnimateOnScroll delay={250} animation="zoom-in">
+              <div className={styles.infoCard}>
+                <div className={styles.infoIcon}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className={styles.infoLabel}>Availability</h4>
+                  <p className={styles.infoValue}>Open to opportunities</p>
+                </div>
               </div>
-              <div>
-                <h4 className={styles.infoLabel}>Availability</h4>
-                <p className={styles.infoValue}>Open to opportunities</p>
-              </div>
-            </div>
-          </AnimateOnScroll>
+            </AnimateOnScroll>
+          </div>
         </div>
       </div>
     </section>
