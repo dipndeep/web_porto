@@ -26,21 +26,13 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [mobileOpen]);
+
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`} id="navbar">
       <nav className={styles.nav}>
         <a href="#hero" className={styles.logo} onClick={handleLinkClick}>
-          GanendraSpaceship
+          Ganendra<span className={styles.logoExtra}>Spaceship</span>
         </a>
 
         {/* Desktop Nav */}

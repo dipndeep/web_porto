@@ -37,8 +37,8 @@ export default function BackToTop() {
           aria-label="Back to Top"
           style={{
             position: 'fixed',
-            bottom: '2rem',
-            right: '2rem',
+            bottom: 'var(--back-to-top-bottom, 2rem)',
+            right: 'var(--back-to-top-right, 2rem)',
             width: '46px',
             height: '46px',
             borderRadius: '50%',

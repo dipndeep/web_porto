@@ -58,6 +58,8 @@
 
   --max-width: 1200px;
   --section-padding: 6rem 2rem;
+  --back-to-top-bottom: 2rem;
+  --back-to-top-right: 2rem;
 }
 
 /* Light theme */
@@ -233,6 +235,7 @@ textarea {
   background: linear-gradient(135deg, var(--accent), transparent 60%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0.15;
@@ -374,6 +377,8 @@ textarea {
     --font-size-6xl: 2.5rem;
     --font-size-4xl: 1.75rem;
     --font-size-3xl: 1.5rem;
+    --back-to-top-bottom: 1.25rem;
+    --back-to-top-right: 1.25rem;
   }
 }
 
