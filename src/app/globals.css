@@ -367,20 +367,24 @@ textarea {
   background: var(--text-secondary);
 }
 
-/* --- Responsive --- */
 @media (max-width: 768px) {
   :root {
-    --section-padding: 4rem 1.25rem;
+    --section-padding: 4rem 1.5rem;
     --font-size-5xl: 2.5rem;
     --font-size-6xl: 3rem;
     --font-size-4xl: 2rem;
     --font-size-3xl: 1.75rem;
   }
+
+  .section-subtitle {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+  }
 }
 
 @media (max-width: 480px) {
   :root {
-    --section-padding: 3rem 1rem;
+    --section-padding: 3rem 1.25rem;
     --font-size-5xl: 2rem;
     --font-size-6xl: 2.5rem;
     --font-size-4xl: 1.75rem;

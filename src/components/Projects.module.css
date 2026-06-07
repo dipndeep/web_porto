@@ -101,8 +101,8 @@
 
 .mobileLinkContainer {
   display: none;
-  margin-top: auto;
-  margin-bottom: 1rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
 }
 
 .mobileLink {
@@ -137,10 +137,127 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
     gap: 1.25rem;
+    padding: 1.5rem;
+    margin: 1.5rem -1.5rem 0 -1.5rem;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cardWrapper {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    transition: all var(--transition-base);
+    will-change: transform, opacity, filter;
+  }
+
+  .cardWrapperActive {
+    transform: scale(1.02);
+    opacity: 1;
+    filter: none;
+  }
+
+  .cardWrapperActive .card {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .cardWrapperInactive {
+    transform: scale(0.95);
+    opacity: 0.5;
+    filter: brightness(0.6) grayscale(30%);
+    cursor: pointer;
+  }
+
+  .cardWrapperInactive .card {
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.05);
+    background: rgba(10, 10, 15, 0.4);
+  }
+
+  .cardWrapperInactive:hover {
+    transform: scale(0.95);
+  }
+
+  .cardWrapperInactive .card:hover {
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .imageWrapper {
+    display: block;
+    aspect-ratio: 16 / 10;
+  }
+
+  .cardBody {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .cardTitle {
+    font-size: var(--font-size-md);
+    margin-bottom: 0.5rem;
+  }
+
+  .cardDesc {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: none;
+  }
+
+  .mobileLink {
+    display: inline-flex;
+    width: auto;
+    justify-content: center;
+    padding: 0.5rem 1.25rem;
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    margin: 1.5rem -1.25rem 0 -1.25rem;
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .cardWrapper {
+    flex: 0 0 82%;
+  }
+
+  .cardBody {
+    padding: 1.15rem;
+  }
+
+  .cardTitle {
+    font-size: var(--font-size-base);
+  }
+
+  .cardDesc {
+    font-size: var(--font-size-sm);
+    margin-bottom: 0.75rem;
+  }
+
+  .mobileLink {
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-sm);
   }
 }
 
@@ -175,3 +292,38 @@
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(124, 115, 255, 0.2);
 }
+
+/* Slider indicator dots */
+.sliderDots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-color);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all var(--transition-base);
+}
+
+.dotActive {
+  width: 24px;
+  border-radius: 100px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+@media (max-width: 768px) {
+  .sliderDots {
+    display: flex;
+  }
+}
+
+

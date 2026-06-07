@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import AnimateOnScroll from './AnimateOnScroll';
@@ -63,11 +63,90 @@ const projects = [
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeIndex, setActiveIndex] = useState(0);
+  const gridRef = useRef(null);
 
   const filteredProjects =
     activeCategory === 'all'
       ? projects
       : projects.filter((project) => project.category === activeCategory);
+
+  const handleScroll = () => {
+    if (!gridRef.current) return;
+    const container = gridRef.current;
+    const scrollLeft = container.scrollLeft;
+    const children = container.children;
+    if (children.length === 0) return;
+
+    // Find which child is closest to the horizontal center of the container
+    const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
+    
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      const childRect = child.getBoundingClientRect();
+      const childCenter = childRect.left + childRect.width / 2;
+      const distance = Math.abs(childCenter - containerCenter);
+      
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = i;
+      }
+    }
+
+    setActiveIndex(closestIndex);
+  };
+
+  const handleCategoryChange = (categoryId) => {
+    setActiveCategory(categoryId);
+    setActiveIndex(0);
+    setTimeout(() => {
+      if (gridRef.current) {
+        gridRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+      }
+    }, 50);
+  };
+
+  useEffect(() => {
+    const container = gridRef.current;
+    if (!container) return;
+
+    let timeoutId;
+    const onScroll = () => {
+      if (timeoutId) cancelAnimationFrame(timeoutId);
+      timeoutId = requestAnimationFrame(handleScroll);
+    };
+
+    handleScroll();
+    container.addEventListener('scroll', onScroll);
+    window.addEventListener('resize', onScroll);
+
+    return () => {
+      container.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (timeoutId) cancelAnimationFrame(timeoutId);
+    };
+  }, [filteredProjects]);
+
+  const handleCardClick = (index, e) => {
+    // Only intercept if the card is NOT currently active/centered
+    if (activeIndex !== index) {
+      e.preventDefault();
+      if (gridRef.current) {
+        const container = gridRef.current;
+        const child = container.children[index];
+        if (child) {
+          child.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center',
+          });
+        }
+      }
+    }
+  };
 
   return (
     <section className={styles.projects} id="projects">
@@ -86,7 +165,7 @@ export default function Projects() {
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
+                onClick={() => handleCategoryChange(cat.id)}
                 className={`${styles.filterBtn} ${
                   activeCategory === cat.id ? styles.filterBtnActive : ''
                 }`}
@@ -100,7 +179,7 @@ export default function Projects() {
 
         {/* Animated Projects Grid */}
         <AnimateOnScroll delay={150} animation="fade-up">
-          <motion.div className={styles.grid} layout>
+          <motion.div ref={gridRef} className={styles.grid} layout>
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, index) => (
                 <motion.div
@@ -110,6 +189,10 @@ export default function Projects() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
+                  className={`${styles.cardWrapper} ${
+                    activeIndex === index ? styles.cardWrapperActive : styles.cardWrapperInactive
+                  }`}
+                  onClick={(e) => handleCardClick(index, e)}
                 >
                   <article className={`card ${styles.card}`}>
                     <div className={styles.imageWrapper}>
@@ -140,6 +223,13 @@ export default function Projects() {
                     <div className={styles.cardBody}>
                       <h3 className={styles.cardTitle}>{project.title}</h3>
                       <p className={styles.cardDesc}>{project.description}</p>
+                      <div className={styles.tags}>
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                       <div className={styles.mobileLinkContainer}>
                         <a
                           href={project.github}
@@ -154,13 +244,6 @@ export default function Projects() {
                           <span>View Code</span>
                         </a>
                       </div>
-                      <div className={styles.tags}>
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="tag">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
                     </div>
                   </article>
                 </motion.div>
@@ -168,6 +251,32 @@ export default function Projects() {
             </AnimatePresence>
           </motion.div>
         </AnimateOnScroll>
+
+        {/* Navigation Dots for Mobile Slider */}
+        {filteredProjects.length > 1 && (
+          <div className={styles.sliderDots}>
+            {filteredProjects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  if (gridRef.current) {
+                    const container = gridRef.current;
+                    const child = container.children[index];
+                    if (child) {
+                      child.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center',
+                      });
+                    }
+                  }
+                }}
+                className={`${styles.dot} ${activeIndex === index ? styles.dotActive : ''}`}
+                aria-label={`Go to project ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
