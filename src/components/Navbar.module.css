@@ -42,6 +42,9 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   transition: opacity var(--transition-fast);
+  display: flex;
+  align-items: center;
+  height: 40px;
 }
 
 .logoExtra {
