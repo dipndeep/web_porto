@@ -24,6 +24,15 @@ const projects = [
     category: 'machine-learning',
   },
   {
+    title: 'FIFA World Cup 2026 Forecasting',
+    description:
+      'Predicting the probability of each team winning every match in the FIFA World Cup 2026 using Machine Learning algorithms and historical data.',
+    image: '/wc26_forecast.png',
+    tags: ['Python', 'Machine Learning', 'Elo Rating', 'Monte Carlo Simulation', 'Data Visualization'],
+    github: 'https://github.com/dipndeep/world_cup_26_forecast',
+    category: 'machine-learning',
+  },
+  {
     title: 'TitipHub Startup',
     description:
       'A college-developed startup platform connecting parents and pet owners with trusted, local babysitters and pet sitters.',
@@ -40,15 +49,6 @@ const projects = [
     tags: ['React.JS', 'Tailwind CSS', 'Node.JS', 'Fitness Center'],
     github: 'https://github.com/dipndeep/maezprogym-apps',
     category: 'web-dev',
-  },
-  {
-    title: 'Customer Segmentation Dashboard',
-    description:
-      'An interactive analytics dashboard segmenting customers using the K-Means clustering algorithm and cohort analysis metrics.',
-    image: '/project-dashboard.png',
-    tags: ['Data Science', 'Python', 'Clustering', 'Data Visualization'],
-    github: 'https://github.com/dipndeep/customer-segmentation',
-    category: 'data-science',
   },
   {
     title: 'Market Basket Association Miner',
