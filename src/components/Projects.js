@@ -33,6 +33,15 @@ const projects = [
     category: 'machine-learning',
   },
   {
+    title: 'Formula One 2026 Forecasting',
+    description:
+      'This project aims to predict the final results of the 2026 Formula 1 WDC and WCC using analytical modeling based on Elo Rating, Machine Learning, and Monte Carlo Simulation (10,000 iterations).',
+    image: '/f1_forecast.png',
+    tags: ['Python', 'Machine Learning', 'Elo Rating', 'Monte Carlo Simulation', 'Data Visualization'],
+    github: 'https://github.com/dipndeep/formula_one_forecasting',
+    category: 'machine-learning',
+  },
+  {
     title: 'TitipHub Startup',
     description:
       'A college-developed startup platform connecting parents and pet owners with trusted, local babysitters and pet sitters.',
@@ -49,15 +58,6 @@ const projects = [
     tags: ['React.JS', 'Tailwind CSS', 'Node.JS', 'Fitness Center'],
     github: 'https://github.com/dipndeep/maezprogym-apps',
     category: 'web-dev',
-  },
-  {
-    title: 'Market Basket Association Miner',
-    description:
-      'A transaction analysis tool implementing the Apriori algorithm to discover correlations between products purchased together.',
-    image: '/project-data-mining.png',
-    tags: ['Data Mining', 'Python', 'Apriori Algorithm', 'Data Analytics'],
-    github: 'https://github.com/dipndeep/market-basket-analysis',
-    category: 'data-science',
   },
 ];
 
