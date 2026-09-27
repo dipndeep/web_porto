@@ -1,282 +1,195 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
 import AnimateOnScroll from './AnimateOnScroll';
 import styles from './Projects.module.css';
 
 const categories = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'machine-learning', label: 'Machine Learning' },
-  { id: 'data-science', label: 'Data Science' },
-  { id: 'web-dev', label: 'Web Dev' },
+  { id: 'all', label: 'All Works' },
+  { id: 'predictive-ml', label: 'Predictive & ML' },
+  { id: 'research-cv', label: 'Computer Vision & Research' },
+  { id: 'full-stack', label: 'Full-Stack Systems' },
 ];
 
 const projects = [
   {
-    title: 'Teen Depression Calculator',
+    id: 'f1-2026',
+    title: 'Formula One 2026 Championship Forecasting',
+    category: 'predictive-ml',
+    badge: '10,000 Iterations',
+    index: '01',
     description:
-      'A web application that predicts the likelihood of depression in teenagers based on their responses to a series of questions.',
-    image: '/teen-depression.png',
-    tags: ['Python', 'Machine Learning', 'XGBoost', 'React.JS'],
-    github: 'https://github.com/dipndeep/depression_calc',
-    category: 'machine-learning',
-  },
-  {
-    title: 'FIFA World Cup 2026 Forecasting',
-    description:
-      'Predicting the probability of each team winning every match in the FIFA World Cup 2026 using Machine Learning algorithms and historical data.',
-    image: '/wc26_forecast.png',
-    tags: ['Python', 'Machine Learning', 'Elo Rating', 'Monte Carlo Simulation', 'Data Visualization'],
-    github: 'https://github.com/dipndeep/world_cup_26_forecast',
-    category: 'machine-learning',
-  },
-  {
-    title: 'Formula One 2026 Forecasting',
-    description:
-      'This project aims to predict the final results of the 2026 Formula 1 WDC and WCC using analytical modeling based on Elo Rating, Machine Learning, and Monte Carlo Simulation (10,000 iterations).',
+      'Analytical modeling engine predicting driver and constructor standings under the 2026 engine and aerodynamic regulation reset. Combines historical performance data, dynamic Elo ratings, and 10,000 Monte Carlo simulation runs.',
     image: '/f1_forecast.png',
-    tags: ['Python', 'Machine Learning', 'Elo Rating', 'Monte Carlo Simulation', 'Data Visualization'],
+    tags: ['Python', 'Monte Carlo', 'Elo Rating', 'Machine Learning', 'Data Viz'],
     github: 'https://github.com/dipndeep/formula_one_forecasting',
-    category: 'machine-learning',
   },
   {
-    title: 'TitipHub Startup',
+    id: 'wc-2026',
+    title: 'FIFA World Cup 2026 Probabilistic Engine',
+    category: 'predictive-ml',
+    badge: 'Tournament Simulation',
+    index: '02',
     description:
-      'A college-developed startup platform connecting parents and pet owners with trusted, local babysitters and pet sitters.',
+      'Predictive tournament simulation calculating match-by-match win probabilities and knockout progression for the 48-team FIFA World Cup 2026, leveraging adjusted Elo metrics and historical FIFA tournament match databases.',
+    image: '/wc26_forecast.png',
+    tags: ['Python', 'Sports Analytics', 'Elo Rating', 'Monte Carlo', 'Predictive Modeling'],
+    github: 'https://github.com/dipndeep/world_cup_26_forecast',
+  },
+  {
+    id: 'aquatic-weed',
+    title: 'Aquatic Weed Detection via Aerial Drone Imagery',
+    category: 'research-cv',
+    badge: '>95% mAP@50 Val',
+    index: '03',
+    description:
+      'Research assistant project at Universitas Musamus developing computer vision models to identify aquatic weed infestations from drone imagery. Achieved over 95% mAP@50 on secondary validation sets to support ecological monitoring.',
+    image: '/project-ml-model.png',
+    tags: ['Computer Vision', 'PyTorch', 'Drone Imagery', 'Roboflow', 'Object Detection'],
+    github: 'https://github.com/dipndeep',
+  },
+  {
+    id: 'teen-depression',
+    title: 'Adolescent Depression Risk Assessment Tool',
+    category: 'predictive-ml',
+    badge: 'XGBoost Regressor',
+    index: '04',
+    description:
+      'An applied machine learning application predicting adolescent depressive tendency probabilities based on psychological questionnaires and behavioral indicators using an optimized XGBoost classification pipeline.',
+    image: '/teen-depression.png',
+    tags: ['Python', 'Machine Learning', 'XGBoost', 'React.js', 'Healthcare Analytics'],
+    github: 'https://github.com/dipndeep/depression_calc',
+  },
+  {
+    id: 'titiphub',
+    title: 'TitipHub — Pet & Child Care Marketplace',
+    category: 'full-stack',
+    badge: 'Startup Platform',
+    index: '05',
+    description:
+      'A university incubator platform connecting parents and pet guardians with verified local sitters. Features appointment booking, sitter verification workflows, and responsive real-time management.',
     image: '/titiphub.png',
-    tags: ['Start Up', 'React.JS', 'Tailwind CSS', 'Node.JS'],
+    tags: ['React.js', 'Node.js', 'Tailwind CSS', 'System Architecture'],
     github: 'https://github.com/dipndeep/titiphub_app',
-    category: 'web-dev',
   },
   {
-    title: 'MaezproGym Membership App',
+    id: 'maezprogym',
+    title: 'MaezproGym Membership & Attendance Portal',
+    category: 'full-stack',
+    badge: 'Enterprise Dashboard',
+    index: '06',
     description:
-      'A web application designed for fitness centers to manage gym memberships, track customer visits, and handle subscription package registration.',
+      'A streamlined management web app engineered for fitness centers to automate member check-ins, subscription renewals, and administrative operational reporting.',
     image: '/maespro-apps.png',
-    tags: ['React.JS', 'Tailwind CSS', 'Node.JS', 'Fitness Center'],
+    tags: ['React.js', 'Node.js', 'Management Portal', 'Operational Analytics'],
     github: 'https://github.com/dipndeep/maezprogym-apps',
-    category: 'web-dev',
   },
 ];
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [activeIndex, setActiveIndex] = useState(0);
-  const gridRef = useRef(null);
 
   const filteredProjects =
     activeCategory === 'all'
       ? projects
-      : projects.filter((project) => project.category === activeCategory);
-
-  const handleScroll = () => {
-    if (!gridRef.current) return;
-    const container = gridRef.current;
-    const scrollLeft = container.scrollLeft;
-    const children = container.children;
-    if (children.length === 0) return;
-
-    // Find which child is closest to the horizontal center of the container
-    const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
-    
-    let closestIndex = 0;
-    let minDistance = Infinity;
-
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      const childRect = child.getBoundingClientRect();
-      const childCenter = childRect.left + childRect.width / 2;
-      const distance = Math.abs(childCenter - containerCenter);
-      
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = i;
-      }
-    }
-
-    setActiveIndex(closestIndex);
-  };
-
-  const handleCategoryChange = (categoryId) => {
-    setActiveCategory(categoryId);
-    setActiveIndex(0);
-    setTimeout(() => {
-      if (gridRef.current) {
-        gridRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-      }
-    }, 50);
-  };
-
-  useEffect(() => {
-    const container = gridRef.current;
-    if (!container) return;
-
-    let timeoutId;
-    const onScroll = () => {
-      if (timeoutId) cancelAnimationFrame(timeoutId);
-      timeoutId = requestAnimationFrame(handleScroll);
-    };
-
-    handleScroll();
-    container.addEventListener('scroll', onScroll);
-    window.addEventListener('resize', onScroll);
-
-    return () => {
-      container.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      if (timeoutId) cancelAnimationFrame(timeoutId);
-    };
-  }, [filteredProjects]);
-
-  const handleCardClick = (index, e) => {
-    // Only intercept if the card is NOT currently active/centered
-    if (activeIndex !== index) {
-      e.preventDefault();
-      if (gridRef.current) {
-        const container = gridRef.current;
-        const child = container.children[index];
-        if (child) {
-          child.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'center',
-          });
-        }
-      }
-    }
-  };
+      : projects.filter((p) => p.category === activeCategory);
 
   return (
     <section className={styles.projects} id="projects">
       <div className="section">
-        <AnimateOnScroll>
-          <span className="section-label">Projects</span>
-          <h2 className="section-title">Selected Work</h2>
-          <p className="section-subtitle">
-            A showcase of my recent data projects, from analysis dashboards to machine learning models.
-          </p>
-        </AnimateOnScroll>
+        {/* Header */}
+        <div className={styles.sectionHeader}>
+          <AnimateOnScroll>
+            <span className="section-label">Selected Works</span>
+            <h2 className="section-title">
+              Predictive Models &amp; <em>Research Case Studies</em>
+            </h2>
+            <p className="section-subtitle">
+              A curated catalog of applied data science, statistical simulations, 
+              computer vision research, and technical systems engineered with verifiable methodology.
+            </p>
+          </AnimateOnScroll>
 
-        {/* Filter Tabs */}
-        <AnimateOnScroll delay={100}>
-          <div className={styles.filterContainer}>
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => handleCategoryChange(cat.id)}
-                className={`${styles.filterBtn} ${
-                  activeCategory === cat.id ? styles.filterBtnActive : ''
-                }`}
-                id={`filter-btn-${cat.id}`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-        </AnimateOnScroll>
-
-        {/* Animated Projects Grid */}
-        <AnimateOnScroll delay={150} animation="fade-up">
-          <motion.div ref={gridRef} className={styles.grid} layout>
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  className={`${styles.cardWrapper} ${
-                    activeIndex === index ? styles.cardWrapperActive : styles.cardWrapperInactive
+          {/* Filter Pills */}
+          <div className={styles.filterBar}>
+            {categories.map((cat) => {
+              const count =
+                cat.id === 'all'
+                  ? projects.length
+                  : projects.filter((p) => p.category === cat.id).length;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`${styles.filterBtn} ${
+                    activeCategory === cat.id ? styles.filterBtnActive : ''
                   }`}
-                  onClick={(e) => handleCardClick(index, e)}
+                  id={`filter-${cat.id}`}
                 >
-                  <article className={`card ${styles.card}`}>
-                    <div className={styles.imageWrapper}>
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        width={600}
-                        height={340}
-                        className={styles.image}
-                        priority={index < 2}
-                      />
-                      <div className={styles.imageOverlay}>
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.overlayBtn}
-                          aria-label={`View ${project.title} on GitHub`}
-                          id={`project-link-${index}`}
-                        >
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                          </svg>
-                          View on GitHub
-                        </a>
-                      </div>
-                    </div>
-                    <div className={styles.cardBody}>
-                      <h3 className={styles.cardTitle}>{project.title}</h3>
-                      <p className={styles.cardDesc}>{project.description}</p>
-                      <div className={styles.tags}>
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="tag">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <div className={styles.mobileLinkContainer}>
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.mobileLink}
-                          id={`project-mobile-link-${index}`}
-                        >
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                          </svg>
-                          <span>View on GitHub</span>
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </AnimateOnScroll>
-
-        {/* Navigation Dots for Mobile Slider */}
-        {filteredProjects.length > 1 && (
-          <div className={styles.sliderDots}>
-            {filteredProjects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  if (gridRef.current) {
-                    const container = gridRef.current;
-                    const child = container.children[index];
-                    if (child) {
-                      child.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest',
-                        inline: 'center',
-                      });
-                    }
-                  }
-                }}
-                className={`${styles.dot} ${activeIndex === index ? styles.dotActive : ''}`}
-                aria-label={`Go to project ${index + 1}`}
-              />
-            ))}
+                  <span>{cat.label}</span>
+                  <span className={styles.filterCount}>({count})</span>
+                </button>
+              );
+            })}
           </div>
-        )}
+        </div>
+
+        {/* Editorial Projects Grid */}
+        <div className={styles.grid}>
+          {filteredProjects.map((project, idx) => (
+            <AnimateOnScroll key={project.id} delay={idx * 60} animation="fade-up">
+              <article className={`card ${styles.card}`}>
+                {/* Visual Preview */}
+                <div className={styles.imageFrame}>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={720}
+                    height={420}
+                    className={styles.image}
+                    priority={idx < 2}
+                  />
+                  <div className={styles.imageBadge}>
+                    <span className={styles.badgeText}>{project.badge}</span>
+                  </div>
+                </div>
+
+                {/* Card Content */}
+                <div className={styles.cardContent}>
+                  <div className={styles.cardHeader}>
+                    <span className={styles.projectIndex}>CASE {project.index}</span>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.githubLink}
+                      aria-label={`View ${project.title} repository`}
+                    >
+                      <span>Repository</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7" />
+                        <polyline points="7 7 17 7 17 17" />
+                      </svg>
+                    </a>
+                  </div>
+
+                  <h3 className={styles.cardTitle}>{project.title}</h3>
+                  <p className={styles.cardDesc}>{project.description}</p>
+
+                  {/* Methodologies / Tech Tags */}
+                  <div className={styles.tags}>
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            </AnimateOnScroll>
+          ))}
+        </div>
       </div>
     </section>
   );

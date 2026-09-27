@@ -12,7 +12,6 @@ export default function BackToTop() {
     };
 
     window.addEventListener('scroll', toggleVisible, { passive: true });
-    // Initial check
     toggleVisible();
 
     return () => window.removeEventListener('scroll', toggleVisible);
@@ -30,39 +29,40 @@ export default function BackToTop() {
       {visible && (
         <motion.button
           onClick={scrollToTop}
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          initial={{ opacity: 0, scale: 0.85, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          transition={{ duration: 0.3 }}
+          exit={{ opacity: 0, scale: 0.85, y: 15 }}
+          transition={{ duration: 0.2 }}
           aria-label="Back to Top"
           style={{
             position: 'fixed',
-            bottom: 'var(--back-to-top-bottom, 2rem)',
-            right: 'var(--back-to-top-right, 2rem)',
-            width: '46px',
-            height: '46px',
+            bottom: '2rem',
+            right: '2rem',
+            width: '42px',
+            height: '42px',
             borderRadius: '50%',
-            background: 'var(--accent-gradient)',
-            color: '#ffffff',
-            border: 'none',
+            background: 'var(--bg-card)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border-color-hover)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            boxShadow: '0 4px 15px rgba(124, 115, 255, 0.35)',
+            boxShadow: 'var(--shadow-md)',
+            backdropFilter: 'blur(12px)',
             zIndex: 999,
           }}
-          whileHover={{ scale: 1.1, translateY: -2 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ translateY: -2, borderColor: 'var(--accent)' }}
+          whileTap={{ scale: 0.94 }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="18"
+            height="18"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.5"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           >

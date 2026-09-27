@@ -18,7 +18,6 @@ export default function ScrollProgress() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    // Run once initially
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
@@ -31,11 +30,12 @@ export default function ScrollProgress() {
         top: 0,
         left: 0,
         width: `${scrollWidth}%`,
-        height: '3px',
-        background: 'var(--accent-gradient)',
+        height: '2px',
+        background: 'var(--accent)',
         zIndex: 10000,
         transition: 'width 0.1s ease-out',
         pointerEvents: 'none',
+        opacity: 0.85,
       }}
     />
   );
