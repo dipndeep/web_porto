@@ -1,20 +1,12 @@
-import { Plus_Jakarta_Sans, Newsreader, JetBrains_Mono } from "next/font/google";
+import { Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
-import ScrollProgress from "@/components/ScrollProgress";
-import BackToTop from "@/components/BackToTop";
 
-const sans = Plus_Jakarta_Sans({
+const sans = Instrument_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
-});
-
-const serif = Newsreader({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  display: "swap",
-  variable: "--font-serif",
 });
 
 const mono = JetBrains_Mono({
@@ -23,42 +15,68 @@ const mono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
+// Absolute base URL for Open Graph / Twitter image links.
+// Set NEXT_PUBLIC_SITE_URL once you have a custom domain; on Vercel the
+// production URL is picked up automatically.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
+const title = "Ganendra Pradipa";
+const description =
+  "Data-focused — machine learning, computer vision, data mining. Currently R&D at Smart Center Universitas Musamus.";
+
 export const metadata = {
-  title: "Ganendra Pradipa — Data Analyst & ML Explorer",
-  description:
-    "Data-focused professional specializing in applied Machine Learning, predictive simulations, and data storytelling.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
   keywords: [
+    "Ganendra Pradipa",
     "Data Analyst",
     "Machine Learning",
-    "Data Science",
-    "Monte Carlo Simulation",
     "Computer Vision",
-    "Ganendra Pradipa",
+    "Data Mining",
     "Portfolio",
   ],
   authors: [{ name: "Ganendra Pradipa" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Ganendra Pradipa — Data Analyst & ML Explorer",
-    description:
-      "Transforming complex datasets and predictive models into clear, decisive narratives.",
+    title,
+    description,
+    url: "/",
+    siteName: title,
     type: "website",
     locale: "en_US",
   },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
+
+// Runs before first paint: applies the saved theme (or the OS preference)
+// so dark-mode visitors never see a white flash on load/refresh.
+const themeInitScript = `(function(){try{var t=localStorage.getItem('portfolio-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})();`;
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      data-theme="dark"
-      className={`${sans.variable} ${serif.variable} ${mono.variable}`}
+      className={`${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
     >
       <body>
-        <ThemeProvider>
-          <ScrollProgress />
-          {children}
-          <BackToTop />
-        </ThemeProvider>
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+        />
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

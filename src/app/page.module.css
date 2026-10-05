@@ -1,0 +1,379 @@
+.page {
+  width: 100%;
+}
+
+/* --- Top Navigation --- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.navLinks,
+.navSocials {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  list-style: none;
+}
+
+.navItem {
+  color: var(--text-secondary);
+}
+
+.navItem:hover {
+  color: var(--text-primary);
+}
+
+.themeBtn {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-tertiary);
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.themeBtn:hover {
+  color: var(--text-primary);
+}
+
+/* Show the label of the theme you'd switch TO */
+.labelLight {
+  display: none;
+}
+
+:global([data-theme="dark"]) .labelDark {
+  display: none;
+}
+
+:global([data-theme="dark"]) .labelLight {
+  display: inline;
+}
+
+/* --- Intro Section --- */
+.intro {
+  margin-bottom: 2rem;
+}
+
+.name {
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.bio {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  max-width: 65ch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.bioLine {
+  color: var(--text-primary);
+}
+
+.bioSub {
+  color: var(--text-secondary);
+}
+
+/* --- Section Headings --- */
+.section {
+  scroll-margin-top: 2rem;
+}
+
+.sectionHeading {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+/* --- Tabular Row Layout (Experience & Projects) --- */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.5rem 0.5rem;
+  margin: -0.5rem -0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+}
+
+.row:hover {
+  background-color: var(--bg-subtle);
+}
+
+.dateCol {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.contentCol {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Experience Specific */
+.expRole {
+  font-size: 15px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.expSub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Projects Specific */
+.projectHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.projectTitle {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.githubLink {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.githubLink:hover {
+  color: var(--text-primary);
+}
+
+.projectDesc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 0.35rem;
+}
+
+.projectTools {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* --- Contact Section --- */
+.contactContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.emailRow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.emailLink {
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.copyBtn {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.copyBtn:hover {
+  color: var(--text-primary);
+}
+
+.contactNote {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-family: var(--mono);
+}
+
+/* --- Footer --- */
+.footer {
+  margin-top: 3.5rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.kbd {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 0 0.35em;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-secondary);
+}
+
+/* Keyboard hint is meaningless on touch-only devices */
+@media (hover: none) {
+  .kbdHint {
+    display: none;
+  }
+}
+
+/* --- Print helpers --- */
+.printOnly {
+  display: none;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 580px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .navLinks,
+  .navSocials {
+    gap: 1rem;
+  }
+
+  .row {
+    grid-template-columns: 80px 1fr;
+    gap: 0.75rem;
+    padding: 0.4rem 0.25rem;
+    margin: -0.4rem -0.25rem;
+  }
+
+  .dateCol {
+    font-size: 12px;
+  }
+
+  .projectHeader {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+}
+
+/* ===== PRINT (one-page resume) ===== */
+@media print {
+  .nav,
+  .screenOnly,
+  .githubLink,
+  .footer {
+    display: none !important;
+  }
+
+  .printOnly {
+    display: block;
+    font-family: var(--mono);
+    font-size: 8.5pt;
+    color: var(--text-secondary);
+  }
+
+  .intro {
+    margin-bottom: 0;
+  }
+
+  .intro .printOnly {
+    margin-top: 6pt;
+  }
+
+  .name {
+    font-size: 18pt;
+  }
+
+  .subtitle {
+    font-size: 10pt;
+    margin-bottom: 6pt;
+  }
+
+  .bio {
+    font-size: 10pt;
+    gap: 1pt;
+  }
+
+  .sectionHeading {
+    font-size: 9pt;
+    margin-bottom: 6pt;
+  }
+
+  .list {
+    gap: 6pt;
+  }
+
+  .row {
+    padding: 0;
+    margin: 0;
+    grid-template-columns: 70pt 1fr;
+    gap: 8pt;
+    break-inside: avoid;
+  }
+
+  .row:hover {
+    background: none;
+  }
+
+  .dateCol,
+  .expSub,
+  .projectTools {
+    font-size: 8.5pt;
+  }
+
+  .expRole,
+  .projectTitle {
+    font-size: 10pt;
+  }
+
+  .projectDesc {
+    font-size: 9.5pt;
+    margin-bottom: 1pt;
+  }
+}
