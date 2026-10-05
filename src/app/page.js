@@ -1,5 +1,9 @@
+'use client';
+
+import { useState } from 'react';
 import ThemeToggle from '@/components/ThemeToggle';
 import CopyEmail from '@/components/CopyEmail';
+import CvModal from '@/components/CvModal';
 import styles from './page.module.css';
 
 const EMAIL = 'ganendraptpratama@gmail.com';
@@ -20,7 +24,7 @@ const experiences = [
     role: 'Research & Development, Smart Center Universitas Musamus',
   },
   {
-    period: 'Jun–Dec25',
+    period: 'Jun–Dec 2025',
     role: 'Research Assistant (CV & AI), Information System Dept.',
     sub: '→ aquatic weed detection via drone imagery, mAP@50 44.7%',
   },
@@ -64,10 +68,9 @@ const projects = [
   },
 ];
 
-/** "https://github.com/x/y/" -> "github.com/x/y" (used for printed links) */
-const shortUrl = (url) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
-
 export default function Home() {
+  const [isCvOpen, setIsCvOpen] = useState(false);
+
   return (
     <div className="container">
       <main className={styles.page}>
@@ -78,20 +81,32 @@ export default function Home() {
             <li><a href="#experience" className={styles.navItem}>experience</a></li>
             <li><a href="#projects" className={styles.navItem}>projects</a></li>
             <li><a href="#contact" className={styles.navItem}>contact</a></li>
+            <li>
+              <button
+                type="button"
+                onClick={() => setIsCvOpen(true)}
+                className={`${styles.navItem} ${styles.cvNavBtn}`}
+                title="View original Curriculum Vitae (PDF)"
+              >
+                [cv ↗]
+              </button>
+            </li>
           </ul>
 
           <div className={styles.navSocials}>
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.navItem}
-              >
-                {s.label}
-              </a>
-            ))}
+            <div className={styles.navSocialLinks}>
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.navItem}
+                >
+                  {s.label}
+                </a>
+              ))}
+            </div>
             <ThemeToggle
               className={styles.themeBtn}
               darkLabelClassName={styles.labelDark}
@@ -104,8 +119,17 @@ export default function Home() {
         <header className={styles.intro} id="about">
           <h1 className={styles.name}>Ganendra Pradipa</h1>
           <p className={styles.subtitle}>
-            Information Systems student · Merauke, South Papua
+            Information Systems student · Merauke, South Papua (UTC+9)
           </p>
+
+          {/* Print-only contact bar at the top of the resume (without github links) */}
+          <div className={styles.printContactBar}>
+            <span>{EMAIL}</span>
+            <span className={styles.bullet}>·</span>
+            <span>linkedin.com/in/ganendrapratama</span>
+            <span className={styles.bullet}>·</span>
+            <span>Merauke, South Papua</span>
+          </div>
 
           <div className={styles.bio}>
             <p className={styles.bioLine}>
@@ -116,17 +140,25 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Print-only contact line at the top of the resume */}
-          <p className={styles.printOnly}>
-            {EMAIL} · {socials.slice(0, 2).map((s) => shortUrl(s.url)).join(' · ')}
-          </p>
+          {/* Web shortcut button to open CV PDF popup */}
+          <div className={styles.screenCvPrompt}>
+            <button
+              type="button"
+              onClick={() => setIsCvOpen(true)}
+              className={styles.cvActionBtn}
+            >
+              [view original cv (pdf) ↗]
+            </button>
+          </div>
         </header>
 
-        <hr />
+        <hr className={styles.divider} />
 
         {/* Experience */}
         <section className={styles.section} id="experience" aria-labelledby="experience-heading">
-          <h2 className={styles.sectionHeading} id="experience-heading">## experience</h2>
+          <h2 className={styles.sectionHeading} id="experience-heading">
+            <span className={styles.hashPrefix}>## </span>experience
+          </h2>
           <div className={styles.list}>
             {experiences.map((exp) => (
               <div key={exp.role} className={styles.row}>
@@ -140,11 +172,13 @@ export default function Home() {
           </div>
         </section>
 
-        <hr />
+        <hr className={styles.divider} />
 
         {/* Projects */}
         <section className={styles.section} id="projects" aria-labelledby="projects-heading">
-          <h2 className={styles.sectionHeading} id="projects-heading">## projects</h2>
+          <h2 className={styles.sectionHeading} id="projects-heading">
+            <span className={styles.hashPrefix}>## </span>projects
+          </h2>
           <div className={styles.list}>
             {projects.map((project) => (
               <div key={project.title} className={styles.row}>
@@ -164,22 +198,50 @@ export default function Home() {
                   </div>
                   <p className={styles.projectDesc}>{project.description}</p>
                   <div className={styles.projectTools}>{project.tools}</div>
-                  <div className={styles.printOnly}>{shortUrl(project.github)}</div>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        <hr className={styles.screenOnly} />
+        {/* Print-only Education & Competencies to balance 1-page A4 document */}
+        <section className={styles.printOnlySection} aria-label="Education and Competencies">
+          <h2 className={styles.sectionHeading}>
+            <span className={styles.hashPrefix}>## </span>education &amp; competencies
+          </h2>
+          <div className={styles.printEducationGrid}>
+            <div className={styles.printEduRow}>
+              <span className={styles.printEduLabel}>Education:</span>
+              <span className={styles.printEduVal}>
+                B.S. in Information Systems (2022 — Present) · Universitas Musamus, Merauke
+              </span>
+            </div>
+            <div className={styles.printEduRow}>
+              <span className={styles.printEduLabel}>Core Focus:</span>
+              <span className={styles.printEduVal}>
+                Applied Machine Learning, Predictive Simulations (Monte Carlo, Elo), Drone Computer Vision (YOLO)
+              </span>
+            </div>
+            <div className={styles.printEduRow}>
+              <span className={styles.printEduLabel}>Tooling:</span>
+              <span className={styles.printEduVal}>
+                Python, PyTorch, XGBoost, OpenCV, PostgreSQL, React.js, Node.js, Git, Linux
+              </span>
+            </div>
+          </div>
+        </section>
 
-        {/* Contact (hidden in print — already shown at the top) */}
+        <hr className={`${styles.divider} ${styles.screenOnly}`} />
+
+        {/* Contact (hidden in print — already prominent in top contact bar) */}
         <section
           className={`${styles.section} ${styles.screenOnly}`}
           id="contact"
           aria-labelledby="contact-heading"
         >
-          <h2 className={styles.sectionHeading} id="contact-heading">## contact</h2>
+          <h2 className={styles.sectionHeading} id="contact-heading">
+            <span className={styles.hashPrefix}>## </span>contact
+          </h2>
           <div className={styles.contactContent}>
             <CopyEmail
               email={EMAIL}
@@ -201,6 +263,9 @@ export default function Home() {
           </span>
         </footer>
       </main>
+
+      {/* CV PDF Popup Modal */}
+      <CvModal isOpen={isCvOpen} onClose={() => setIsCvOpen(false)} />
     </div>
   );
 }

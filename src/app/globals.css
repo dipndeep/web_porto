@@ -38,8 +38,7 @@
   color-scheme: dark;
 }
 
-/* No-JS fallback: the inline script in layout.js normally sets data-theme
-   before first paint, so this only applies when scripts are disabled. */
+/* No-JS fallback */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0A0A0A;
@@ -100,6 +99,8 @@ a {
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.15s ease, color 0.15s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a:hover {
@@ -113,6 +114,8 @@ button {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Keyboard focus: thin monochrome ring, only for keyboard users */
@@ -154,50 +157,65 @@ button {
 
 @media (max-width: 640px) {
   .container {
-    padding: 2.5rem 1.25rem 4rem;
+    padding-top: max(2.25rem, env(safe-area-inset-top));
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+    padding-bottom: max(3.5rem, env(safe-area-inset-bottom));
   }
   hr {
     margin: 1.75rem 0;
   }
 }
 
-/* ===== PRINT (Ctrl/Cmd+P → one-page resume) ===== */
+/* ===== PRINT (Ctrl/Cmd+P → Exactly 11.5mm Margin A4 Resume) ===== */
 @media print {
   @page {
-    size: A4;
-    margin: 14mm 16mm;
+    size: A4 portrait;
+    margin: 11.5mm;
   }
 
-  /* Always print in light monochrome, regardless of active theme */
+  /* Force clean light monochrome for paper */
   :root,
   :root[data-theme="dark"],
   :root:not([data-theme="light"]) {
-    --bg: #FFFFFF;
-    --bg-subtle: #FFFFFF;
-    --border: #D4D4D4;
-    --text-primary: #000000;
-    --text-secondary: #444444;
-    --text-tertiary: #777777;
+    --bg: #FFFFFF !important;
+    --bg-subtle: #FFFFFF !important;
+    --border: #D8D8D8 !important;
+    --text-primary: #000000 !important;
+    --text-secondary: #333333 !important;
+    --text-tertiary: #666666 !important;
 
-    color-scheme: light;
+    color-scheme: light !important;
   }
 
+  html,
   body {
-    font-size: 10pt;
-    line-height: 1.45;
-    transition: none;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 9pt;
+    line-height: 1.38;
+    margin: 0 !important;
+    padding: 0 !important;
+    transition: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .container {
-    max-width: none;
-    padding: 0;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important; /* Zero padding: exact 11.5mm margin from @page */
   }
 
   hr {
-    margin: 10pt 0;
+    margin: 8pt 0 !important;
+    border-top: 1px solid #D4D4D4 !important;
   }
 
   a {
-    border-bottom: none;
+    border-bottom: none !important;
+    text-decoration: none !important;
+    color: inherit !important;
   }
 }

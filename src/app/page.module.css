@@ -21,12 +21,31 @@
   list-style: none;
 }
 
+.navSocialLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
 .navItem {
   color: var(--text-secondary);
+  font-family: var(--mono);
+  font-size: 13px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  text-decoration: none;
 }
 
 .navItem:hover {
   color: var(--text-primary);
+}
+
+.cvNavBtn {
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 .themeBtn {
@@ -92,6 +111,28 @@
   color: var(--text-secondary);
 }
 
+/* CV Prompt on Screen */
+.screenCvPrompt {
+  margin-top: 1.25rem;
+}
+
+.cvActionBtn {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.cvActionBtn:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
+}
+
 /* --- Section Headings --- */
 .section {
   scroll-margin-top: 2rem;
@@ -104,6 +145,10 @@
   letter-spacing: 0.04em;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
+}
+
+.hashPrefix {
+  color: var(--text-tertiary);
 }
 
 /* --- Tabular Row Layout (Experience & Projects) --- */
@@ -124,8 +169,16 @@
   transition: background-color 0.15s ease;
 }
 
-.row:hover {
-  background-color: var(--bg-subtle);
+@media (hover: hover) {
+  .row:hover {
+    background-color: var(--bg-subtle);
+  }
+}
+
+@media (hover: none) {
+  .row:active {
+    background-color: var(--bg-subtle);
+  }
 }
 
 .dateCol {
@@ -266,114 +319,385 @@
   }
 }
 
-/* --- Print helpers --- */
-.printOnly {
+/* --- Screen-only / Print-only Visibility --- */
+.printContactBar,
+.printOnlySection {
   display: none;
 }
 
 /* --- Mobile Responsiveness --- */
-@media (max-width: 580px) {
+@media (max-width: 600px) {
   .nav {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: stretch;
+    gap: 0.85rem;
     margin-bottom: 2.5rem;
   }
 
-  .navLinks,
-  .navSocials {
-    gap: 1rem;
+  .navLinks {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.85rem;
+    padding: 0;
   }
 
+  .navItem {
+    padding: 0.35rem 0.2rem;
+    font-size: 13px;
+    touch-action: manipulation;
+  }
+
+  .cvNavBtn {
+    padding: 0.35rem 0.45rem;
+    background-color: var(--bg-subtle);
+    border-radius: 3px;
+  }
+
+  .navSocials {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 0.65rem;
+    border-top: 1px dashed var(--border);
+    gap: 0.85rem;
+  }
+
+  .navSocialLinks {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .themeBtn {
+    padding: 0.35rem 0.3rem;
+    touch-action: manipulation;
+  }
+
+  /* Intro Section on Mobile */
+  .intro {
+    margin-bottom: 1.75rem;
+  }
+
+  .name {
+    font-size: 1.85rem;
+  }
+
+  .subtitle {
+    font-size: 13.5px;
+    margin-bottom: 1.25rem;
+    line-height: 1.45;
+  }
+
+  .bio {
+    font-size: 14.5px;
+    line-height: 1.6;
+    gap: 0.35rem;
+  }
+
+  .screenCvPrompt {
+    margin-top: 1.15rem;
+  }
+
+  .cvActionBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 0.65rem;
+    margin-left: -0.25rem;
+    font-size: 12.5px;
+    background-color: var(--bg-subtle);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    touch-action: manipulation;
+  }
+
+  /* Section Headings & Spacing */
+  .sectionHeading {
+    margin-top: 1.75rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .list {
+    gap: 1.15rem;
+  }
+
+  /* Single-column stacked row layout on mobile for breathable reading */
   .row {
-    grid-template-columns: 80px 1fr;
-    gap: 0.75rem;
-    padding: 0.4rem 0.25rem;
-    margin: -0.4rem -0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    padding: 0.5rem 0.6rem;
+    margin: -0.25rem -0.6rem;
+    border-radius: 4px;
   }
 
   .dateCol {
-    font-size: 12px;
+    font-size: 11.5px;
+    color: var(--text-tertiary);
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+  }
+
+  .contentCol {
+    width: 100%;
+  }
+
+  .expRole {
+    font-size: 14.5px;
+    line-height: 1.45;
+  }
+
+  .expSub {
+    font-size: 12.5px;
+    line-height: 1.45;
+    margin-top: 0.25rem;
   }
 
   .projectHeader {
-    flex-wrap: wrap;
-    gap: 0.35rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  .projectTitle {
+    font-size: 14.5px;
+    line-height: 1.4;
+  }
+
+  .githubLink {
+    padding: 0.25rem 0.35rem;
+    font-size: 12px;
+    background-color: var(--bg-subtle);
+    border-radius: 3px;
+    touch-action: manipulation;
+  }
+
+  .projectDesc {
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin-bottom: 0.35rem;
+  }
+
+  .projectTools {
+    font-size: 11.5px;
+    line-height: 1.4;
+  }
+
+  /* Contact & Footer on Mobile */
+  .emailRow {
+    gap: 0.5rem;
+  }
+
+  .emailLink {
+    font-size: 14px;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+  }
+
+  .copyBtn {
+    padding: 0.25rem 0.45rem;
+    font-size: 11.5px;
+    background-color: var(--bg-subtle);
+    border-radius: 3px;
+    touch-action: manipulation;
+  }
+
+  .footer {
+    margin-top: 3rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .kbdHint {
+    display: none;
   }
 }
 
-/* ===== PRINT (one-page resume) ===== */
+/* ===== PRINT (EXECUTIVE ONE-PAGE A4 RESUME — EXACT 11.5mm MARGIN) ===== */
 @media print {
+  /* Hide interactive web chrome and links */
   .nav,
   .screenOnly,
+  .screenCvPrompt,
   .githubLink,
   .footer {
     display: none !important;
   }
 
-  .printOnly {
-    display: block;
-    font-family: var(--mono);
-    font-size: 8.5pt;
-    color: var(--text-secondary);
+  /* Hide raw markdown '## ' prefix in print */
+  .hashPrefix {
+    display: none !important;
   }
 
+  /* Header structure */
   .intro {
-    margin-bottom: 0;
-  }
-
-  .intro .printOnly {
-    margin-top: 6pt;
+    margin-bottom: 0 !important;
   }
 
   .name {
-    font-size: 18pt;
+    font-size: 21pt !important;
+    font-weight: 600 !important;
+    line-height: 1.1 !important;
+    margin-bottom: 2pt !important;
+    color: #000000 !important;
+    letter-spacing: -0.02em !important;
   }
 
   .subtitle {
-    font-size: 10pt;
-    margin-bottom: 6pt;
+    font-size: 9.5pt !important;
+    color: #333333 !important;
+    margin-bottom: 3.5pt !important;
+  }
+
+  /* Executive Contact Bar (no github link) */
+  .printContactBar {
+    display: flex !important;
+    align-items: baseline !important;
+    flex-wrap: nowrap !important;
+    gap: 8pt !important;
+    font-family: var(--mono) !important;
+    font-size: 8.5pt !important;
+    color: #333333 !important;
+    margin: 3pt 0 6pt 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .bullet {
+    color: #888888 !important;
   }
 
   .bio {
-    font-size: 10pt;
-    gap: 1pt;
+    font-size: 9pt !important;
+    line-height: 1.38 !important;
+    gap: 1.5pt !important;
+    color: #222222 !important;
   }
 
+  .bioLine,
+  .bioSub {
+    color: #222222 !important;
+  }
+
+  /* Hairline Divider */
+  .divider {
+    margin: 9pt 0 10pt 0 !important;
+    border-top: 1.5px solid #111111 !important;
+  }
+
+  /* Clean Executive Section Headings */
   .sectionHeading {
-    font-size: 9pt;
-    margin-bottom: 6pt;
+    font-family: var(--sans) !important;
+    font-size: 9.5pt !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #000000 !important;
+    border-bottom: 1px solid #D8D8D8 !important;
+    padding-bottom: 2.5pt !important;
+    margin-top: 11pt !important;
+    margin-bottom: 7pt !important;
   }
 
+  /* List & Grid */
   .list {
-    gap: 6pt;
+    gap: 8pt !important;
   }
 
   .row {
-    padding: 0;
-    margin: 0;
-    grid-template-columns: 70pt 1fr;
-    gap: 8pt;
-    break-inside: avoid;
+    padding: 0 !important;
+    margin: 0 !important;
+    grid-template-columns: 85pt 1fr !important;
+    gap: 8pt !important;
+    break-inside: avoid !important;
   }
 
   .row:hover {
-    background: none;
+    background: none !important;
   }
 
-  .dateCol,
-  .expSub,
-  .projectTools {
-    font-size: 8.5pt;
+  .dateCol {
+    font-size: 8pt !important;
+    color: #555555 !important;
+    line-height: 1.35 !important;
   }
 
-  .expRole,
+  .expRole {
+    font-size: 9.5pt !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    line-height: 1.3 !important;
+  }
+
+  .expSub {
+    font-size: 8.5pt !important;
+    color: #333333 !important;
+    margin-top: 2pt !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Projects in Print (Clean title without github link) */
+  .projectHeader {
+    display: block !important;
+    margin-bottom: 1.5pt !important;
+  }
+
   .projectTitle {
-    font-size: 10pt;
+    font-size: 9.5pt !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    line-height: 1.3 !important;
   }
 
   .projectDesc {
-    font-size: 9.5pt;
-    margin-bottom: 1pt;
+    font-size: 8.5pt !important;
+    color: #222222 !important;
+    line-height: 1.35 !important;
+    margin-bottom: 2pt !important;
+  }
+
+  .projectTools {
+    font-size: 8pt !important;
+    color: #555555 !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Print-only Education & Competencies (Harmonizes page balance) */
+  .printOnlySection {
+    display: block !important;
+    margin-top: 11pt !important;
+    break-inside: avoid !important;
+  }
+
+  .printEducationGrid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4.5pt !important;
+  }
+
+  .printEduRow {
+    display: grid !important;
+    grid-template-columns: 85pt 1fr !important;
+    gap: 8pt !important;
+    align-items: baseline !important;
+  }
+
+  .printEduLabel {
+    font-family: var(--mono) !important;
+    font-size: 8pt !important;
+    color: #555555 !important;
+  }
+
+  .printEduVal {
+    font-size: 8.5pt !important;
+    color: #222222 !important;
+    line-height: 1.3 !important;
   }
 }

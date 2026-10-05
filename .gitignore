@@ -40,3 +40,6 @@ DEPLOY_VERCEL.md
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local cv documents
+Curriculum Vitae_*.pdf
