@@ -13,18 +13,66 @@
   color: var(--text-secondary);
 }
 
-.navLinks,
-.navSocials {
+.navLogoLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  border-bottom: none !important;
+  text-decoration: none !important;
+  transition: opacity 0.15s ease;
+  flex-shrink: 0;
+}
+
+.navLogoLink:hover {
+  opacity: 0.75;
+  border-bottom: none !important;
+}
+
+.navLogo {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: contain;
+  display: block;
+}
+
+.logoLight {
+  display: block;
+}
+
+.logoDark {
+  display: none;
+}
+
+:global([data-theme="dark"]) .logoLight {
+  display: none;
+}
+
+:global([data-theme="dark"]) .logoDark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme="light"])) .logoLight {
+    display: none;
+  }
+  :global(:root:not([data-theme="light"])) .logoDark {
+    display: block;
+  }
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navLinks {
   display: flex;
   align-items: center;
   gap: 1.25rem;
   list-style: none;
-}
-
-.navSocialLinks {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
 }
 
 .navItem {
@@ -111,9 +159,45 @@
   color: var(--text-secondary);
 }
 
+/* Intro Actions (Socials + CV) */
+.introActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.15rem;
+  margin-top: 1.25rem;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.introSocials {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+.introSocialLink {
+  color: var(--text-secondary);
+  font-family: var(--mono);
+  font-size: 13px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.introSocialLink:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
+}
+
+.introDivider {
+  color: var(--border);
+  user-select: none;
+}
+
 /* CV Prompt on Screen */
 .screenCvPrompt {
-  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
 }
 
 .cvActionBtn {
@@ -272,6 +356,12 @@
   color: var(--text-primary);
 }
 
+.contactContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .copyBtn {
   font-family: var(--mono);
   font-size: 12px;
@@ -328,19 +418,38 @@
 /* --- Mobile Responsiveness --- */
 @media (max-width: 600px) {
   .nav {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
     margin-bottom: 2.5rem;
   }
 
+  .navLogoLink {
+    order: 1;
+  }
+
+  .navRight {
+    display: contents;
+  }
+
+  .themeBtn {
+    order: 2;
+    padding: 0.35rem 0.3rem;
+    touch-action: manipulation;
+  }
+
   .navLinks {
+    order: 3;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 0.4rem 0.85rem;
-    padding: 0;
+    padding: 0.5rem 0 0;
+    width: 100%;
+    border-top: 1px dashed var(--border);
   }
 
   .navItem {
@@ -353,27 +462,6 @@
     padding: 0.35rem 0.45rem;
     background-color: var(--bg-subtle);
     border-radius: 3px;
-  }
-
-  .navSocials {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding-top: 0.65rem;
-    border-top: 1px dashed var(--border);
-    gap: 0.85rem;
-  }
-
-  .navSocialLinks {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-  }
-
-  .themeBtn {
-    padding: 0.35rem 0.3rem;
-    touch-action: manipulation;
   }
 
   /* Intro Section on Mobile */
@@ -397,18 +485,43 @@
     gap: 0.35rem;
   }
 
-  .screenCvPrompt {
+  .introActions {
     margin-top: 1.15rem;
+    gap: 0.65rem 0.85rem;
+  }
+
+  .introSocials {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .introSocialLink {
+    padding: 0.3rem 0.45rem;
+    background-color: var(--bg-subtle);
+    border-radius: 3px;
+    font-size: 12.5px;
+    line-height: 1.2;
+    touch-action: manipulation;
+  }
+
+  .introDivider {
+    display: none;
+  }
+
+  .screenCvPrompt {
+    margin-top: 0;
   }
 
   .cvActionBtn {
     display: inline-flex;
     align-items: center;
-    padding: 0.45rem 0.65rem;
-    margin-left: -0.25rem;
+    padding: 0.3rem 0.5rem;
     font-size: 12.5px;
+    line-height: 1.2;
     background-color: var(--bg-subtle);
-    border-radius: 4px;
+    border-radius: 3px;
     border: 1px solid var(--border);
     touch-action: manipulation;
   }
@@ -526,6 +639,7 @@
   /* Hide interactive web chrome and links */
   .nav,
   .screenOnly,
+  .introActions,
   .screenCvPrompt,
   .githubLink,
   .footer {

@@ -57,11 +57,31 @@ export const metadata = {
     title,
     description,
   },
+  icons: {
+    icon: [
+      {
+        url: "/logo-black-g.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/logo-white-g.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+      {
+        url: "/logo-black-g.png",
+      },
+    ],
+    apple: [
+      {
+        url: "/logo-black-g.png",
+      },
+    ],
+  },
 };
 
 // Runs before first paint: applies the saved theme (or the OS preference)
-// so dark-mode visitors never see a white flash on load/refresh.
-const themeInitScript = `(function(){try{var t=localStorage.getItem('portfolio-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})();`;
+// so dark-mode visitors never see a white flash on load/refresh and syncs favicon.
+const themeInitScript = `(function(){try{var t=localStorage.getItem('portfolio-theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t);var l=document.querySelector("link[data-dynamic-favicon='true']");if(!l){l=document.createElement('link');l.rel='icon';l.setAttribute('data-dynamic-favicon','true');document.head.appendChild(l)}l.href=t==='dark'?'/logo-white-g.png':'/logo-black-g.png'}catch(e){}})();`;
 
 export default function RootLayout({ children }) {
   return (

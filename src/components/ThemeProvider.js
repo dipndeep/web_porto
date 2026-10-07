@@ -18,6 +18,18 @@ function getCurrentTheme() {
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
+  try {
+    let l = document.querySelector("link[data-dynamic-favicon='true']");
+    if (!l) {
+      l = document.createElement('link');
+      l.rel = 'icon';
+      l.setAttribute('data-dynamic-favicon', 'true');
+      document.head.appendChild(l);
+    }
+    l.href = theme === 'dark' ? '/logo-white-g.png' : '/logo-black-g.png';
+  } catch {
+    // ignore
+  }
 }
 
 /**

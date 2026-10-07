@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import ThemeToggle from '@/components/ThemeToggle';
 import CopyEmail from '@/components/CopyEmail';
 import CvModal from '@/components/CvModal';
@@ -76,37 +77,42 @@ export default function Home() {
       <main className={styles.page}>
         {/* Top Navigation (hidden when printing) */}
         <nav className={styles.nav} aria-label="Main navigation">
-          <ul className={styles.navLinks}>
-            <li><a href="#about" className={styles.navItem}>about</a></li>
-            <li><a href="#experience" className={styles.navItem}>experience</a></li>
-            <li><a href="#projects" className={styles.navItem}>projects</a></li>
-            <li><a href="#contact" className={styles.navItem}>contact</a></li>
-            <li>
-              <button
-                type="button"
-                onClick={() => setIsCvOpen(true)}
-                className={`${styles.navItem} ${styles.cvNavBtn}`}
-                title="View original Curriculum Vitae (PDF)"
-              >
-                [cv ↗]
-              </button>
-            </li>
-          </ul>
+          <a href="#about" className={styles.navLogoLink} aria-label="Ganendra Pradipa (Home)">
+            <Image
+              src="/logo-black-g.png"
+              alt="Ganendra Pradipa"
+              width={26}
+              height={26}
+              priority
+              className={`${styles.navLogo} ${styles.logoLight}`}
+            />
+            <Image
+              src="/logo-white-g.png"
+              alt="Ganendra Pradipa"
+              width={26}
+              height={26}
+              priority
+              className={`${styles.navLogo} ${styles.logoDark}`}
+            />
+          </a>
 
-          <div className={styles.navSocials}>
-            <div className={styles.navSocialLinks}>
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.navItem}
+          <div className={styles.navRight}>
+            <ul className={styles.navLinks}>
+              <li><a href="#experience" className={styles.navItem}>experience</a></li>
+              <li><a href="#projects" className={styles.navItem}>projects</a></li>
+              <li><a href="#contact" className={styles.navItem}>contact</a></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setIsCvOpen(true)}
+                  className={`${styles.navItem} ${styles.cvNavBtn}`}
+                  title="View original Curriculum Vitae (PDF)"
                 >
-                  {s.label}
-                </a>
-              ))}
-            </div>
+                  [cv ↗]
+                </button>
+              </li>
+            </ul>
+
             <ThemeToggle
               className={styles.themeBtn}
               darkLabelClassName={styles.labelDark}
@@ -140,15 +146,33 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Web shortcut button to open CV PDF popup */}
-          <div className={styles.screenCvPrompt}>
-            <button
-              type="button"
-              onClick={() => setIsCvOpen(true)}
-              className={styles.cvActionBtn}
-            >
-              [view original cv (pdf) ↗]
-            </button>
+          {/* Social links & CV action button */}
+          <div className={styles.introActions}>
+            <div className={styles.introSocials}>
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.introSocialLink}
+                >
+                  {s.label} ↗
+                </a>
+              ))}
+            </div>
+
+            <span className={styles.introDivider} aria-hidden="true">·</span>
+
+            <div className={styles.screenCvPrompt}>
+              <button
+                type="button"
+                onClick={() => setIsCvOpen(true)}
+                className={styles.cvActionBtn}
+              >
+                [view original cv (pdf) ↗]
+              </button>
+            </div>
           </div>
         </header>
 
