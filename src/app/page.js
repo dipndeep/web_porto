@@ -61,11 +61,11 @@ const projects = [
     github: 'https://github.com/dipndeep/titiphub_app',
   },
   {
-    year: '2025',
-    title: 'MaezproGym',
-    description: 'Membership & subscription management app for gyms.',
-    tools: 'React · Tailwind · Node.js',
-    github: 'https://github.com/dipndeep/maezprogym-apps',
+    year: '2026',
+    title: 'CreditRiskAI',
+    description: 'Credit risk assessment model using machine learning.',
+    tools: 'Python · Machine Learning · Credit Risk',
+    github: 'https://github.com/dipndeep/give-me-some-creds.git',
   },
 ];
 
